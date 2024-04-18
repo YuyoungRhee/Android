@@ -8,16 +8,32 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.DatePicker
+import androidx.appcompat.widget.SearchView
 import android.widget.TimePicker
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import com.example.ch10_dialog.databinding.ActivityMainBinding
+import com.example.ch10_dialog.databinding.DialogCustomBinding
+import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    lateinit var binding : ActivityMainBinding
+    lateinit var toggle : ActionBarDrawerToggle
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.mainDrawerView.setNavigationItemSelectedListener(this)
+
+
+        toggle = ActionBarDrawerToggle(this, binding.drawer, R.string.drawer_opened, R.string.drawer_closed)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toggle.syncState()
 
         binding.btnDate.setOnClickListener {
             DatePickerDialog(this, object : DatePickerDialog.OnDateSetListener {
@@ -46,6 +62,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }, 16, 56, true).show()
         }
+
 
         //여러번 사용되기때문에 리스너를 따로 뺌
         val eventHandler = object : DialogInterface.OnClickListener {
@@ -93,6 +110,7 @@ class MainActivity : AppCompatActivity() {
             override fun onClick(dialog: DialogInterface?, which: Int) {
                 if (which == DialogInterface.BUTTON_POSITIVE) {
                     Log.d("mobileapp", "BUTTON_POSITIVE")
+                    binding.btnAlertSingle.text = "${items[selected]} 선택"
                 } else if (which == DialogInterface.BUTTON_NEGATIVE) {
                     Log.d("mobileapp", "BUTTON_NEGATIVE")
                 }
@@ -112,11 +130,119 @@ class MainActivity : AppCompatActivity() {
                 show()
             }
             binding.btnAlertMulti.setOnClickListener {
+                AlertDialog.Builder(this).run() {
+                    setTitle("알림 - 다수 선택")
+                    setIcon(android.R.drawable.ic_dialog_alert)
+                    setMultiChoiceItems(items, booleanArrayOf(false, true, false, true), object : DialogInterface.OnMultiChoiceClickListener{
+                        override fun onClick(dialog: DialogInterface?, which: Int, isChecked: Boolean) {
+                            Log.d("mobileapp", "$which ${if(isChecked) "선택" else "해제"}")
+                        }
+                    })
+                    setPositiveButton("예", eventHandler)
+                    setNegativeButton("아니오", eventHandler)
+                    show()
+                }
 
             }
+
+            val dialogBindng = DialogCustomBinding.inflate(layoutInflater)
+            val eventHandler3 = object : DialogInterface.OnClickListener {
+                override fun onClick(dialog: DialogInterface?, which: Int) {
+                    if (which == DialogInterface.BUTTON_POSITIVE) {
+                        Log.d("mobileapp", "BUTTON_POSITIVE")
+                        if(dialogBindng.rbtn1.isChecked) {
+                                binding.btnAlertCustom.text = dialogBindng.rbtn1.text.toString()
+                            }
+                        else if (dialogBindng.rbtn2.isChecked) {
+                            binding.btnAlertCustom.text = dialogBindng.rbtn2.text.toString()
+                        }
+                    } else if (which == DialogInterface.BUTTON_NEGATIVE) {
+                        Log.d("mobileapp", "BUTTON_NEGATIVE")
+                    }
+                }
+            }
             binding.btnAlertCustom.setOnClickListener {
+                AlertDialog.Builder(this).run() {
+                    setTitle("알림 - 사용자 화면")
+                    setIcon(android.R.drawable.ic_dialog_alert)
+
+                    setView(dialogBindng.root)
+
+                    setPositiveButton("예", eventHandler3)
+                    setNegativeButton("아니오", eventHandler3)
+                    show()
+                }
 
             }
         }
+    } //onCreate()
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        if(toggle.onOptionsItemSelected(item)){
+            return true
+        }
+        when(item.itemId){
+            R.id.item1 -> {
+                Log.d("mobileapp", "Navigation menu: 메뉴 1")
+                binding.btnDate.setTextColor(Color.parseColor("#ffff00"))
+                true
+            }
+            R.id.item2 -> {
+                Log.d("mobileapp", "Navigation menu: 메뉴 2")
+                true
+            }
+            R.id.item3 -> {
+                Log.d("mobileapp", "Navigation menu: 메뉴 3")
+                true
+            }
+            R.id.item4 -> {
+                Log.d("mobileapp", "Navigation menu: 메뉴 4")
+                true
+            }
+        }
+        return false
+    }
+    //Option Menu
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_navigation, menu)
+        val searchView = menu?.findItem(R.id.menu_search)?.actionView as SearchView
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                Toast.makeText(applicationContext, "$query 검색합니다.", Toast.LENGTH_LONG).show()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+        })
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(toggle.onOptionsItemSelected(item)){
+            return true
+        }
+        when(item.itemId){
+            R.id.item1 -> {
+                Log.d("mobileapp", "Option menu: 메뉴 1")
+                binding.btnDate.setTextColor(Color.parseColor("#ffff00"))
+                true
+            }
+            R.id.item2 -> {
+                Log.d("mobileapp", "Option menu: 메뉴 2")
+                true
+            }
+            R.id.item3 -> {
+                Log.d("mobileapp", "Option menu: 메뉴 3")
+                true
+            }
+            R.id.item4 -> {
+                Log.d("mobileapp", "Option menu: 메뉴 4")
+                true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

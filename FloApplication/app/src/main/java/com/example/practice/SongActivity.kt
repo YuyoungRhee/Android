@@ -1,0 +1,44 @@
+package com.example.practice
+
+import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import com.example.practice.databinding.ActivitySongBinding
+
+class SongActivity : AppCompatActivity() {
+    lateinit var binding: ActivitySongBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = ActivitySongBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.songDownIb.setOnClickListener {
+            finish()
+        }
+
+        binding.songMinplayerIv.setOnClickListener {
+            setPlayerStatus(false)
+        }
+        binding.songPauseIv.setOnClickListener {
+            setPlayerStatus(true)
+        }
+
+        if(intent.hasExtra("title") && intent.hasExtra("singer")){
+            binding.songMusicTitleTv.text = intent.getStringExtra("title")
+            binding.songSingerNameTv.text = intent.getStringExtra("singer")
+        }
+    }
+
+    fun setPlayerStatus(isPlaying: Boolean) {
+        if(isPlaying){
+            binding.songMinplayerIv.visibility = View.VISIBLE
+            binding.songPauseIv.visibility = View.GONE
+        }else {
+            binding.songMinplayerIv.visibility = View.GONE
+            binding.songPauseIv.visibility = View.VISIBLE
+        }
+    }
+
+}
