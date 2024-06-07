@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OneFragment"
+    android:columnCount="4">
+    <TextView
+        android:text="식사 기록"
+        android:textSize="30sp"
+        android:layout_columnSpan="4"
+        android:layout_gravity="center_horizontal"/>
+    <Button
+        android:id="@+id/one_date_btn"
+        android:text="날짜"/>
+    <TextView
+        android:id="@+id/one_date_tv"
+        android:text="날짜 입력"/>
+    <Button
+        android:id="@+id/one_time_btn"
+        android:text="시간"/>
+    <TextView
+        android:id="@+id/one_time_tv"
+        android:text="시간 입력"/>
+    <Button
+        android:id="@+id/one_meal_btn"
+        android:text="식사량"/>
+    <TextView
+        android:id="@+id/one_meal_tv"
+        android:text="식사량 입력"
+        android:layout_marginEnd="50dp"/>
+    <Button
+        android:id="@+id/one_etc_btn"
+        android:text="특이사항"
+        android:layout_marginEnd="10dp"/>
+    <TextView
+        android:id="@+id/one_etc_tv"
+        android:text="특이사항 입력"/>
+
+    <Button
+        android:id="@+id/one_end_btn"
+        android:text="저장"
+        android:layout_width="match_parent"
+        android:layout_columnSpan="4"/>
+    <TextView
+        android:id="@+id/one_result_tv"
+        android:text="결과"
+        android:visibility="invisible"
+        android:layout_columnSpan="2"
+        android:layout_marginTop="20dp"/>
+
+
+
+</GridLayout>

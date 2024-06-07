@@ -59,6 +59,7 @@
             android:text="알림창 - 사용자 지정" />
 
     </LinearLayout>
+
     <!--2. 드로어 화면-->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/mainDrawerView"
@@ -68,5 +69,5 @@
         android:gravity="center"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/navigation_header"
-        app:menu="@menu/menu_navigation"/>
+        app:menu="@menu/menu_provider"/>
 </androidx.drawerlayout.widget.DrawerLayout>

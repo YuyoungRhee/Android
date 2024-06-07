@@ -4,7 +4,9 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -28,12 +30,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //네비게이션 리스너 추가
         binding.mainDrawerView.setNavigationItemSelectedListener(this)
 
-
+        //토글 추가
         toggle = ActionBarDrawerToggle(this, binding.drawer, R.string.drawer_opened, R.string.drawer_closed)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toggle.syncState()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) //토글이랑 액션바랑 연결
+        toggle.syncState() //토글이랑 액션바랑 연결
 
         binding.btnDate.setOnClickListener {
             DatePickerDialog(this, object : DatePickerDialog.OnDateSetListener {
@@ -120,7 +123,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             AlertDialog.Builder(this).run() {
                 setTitle("알림 - 색상 선택")
                 setIcon(android.R.drawable.ic_dialog_alert)
-                setSingleChoiceItems(items,2, object : DialogInterface.OnClickListener {
+                setSingleChoiceItems(items,selected, object : DialogInterface.OnClickListener {
                     override fun onClick(dialog: DialogInterface?, which: Int) {
                         selected = which
                     }
@@ -161,50 +164,62 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     }
                 }
             }
+            val customDialog = AlertDialog.Builder(this).run() {
+                setTitle("알림 - 사용자 화면")
+                setIcon(android.R.drawable.ic_dialog_alert)
+
+                setView(dialogBindng.root)
+
+                setPositiveButton("예", eventHandler3)
+                setNegativeButton("아니오", eventHandler3)
+                create()
+            }
+
             binding.btnAlertCustom.setOnClickListener {
-                AlertDialog.Builder(this).run() {
-                    setTitle("알림 - 사용자 화면")
-                    setIcon(android.R.drawable.ic_dialog_alert)
-
-                    setView(dialogBindng.root)
-
-                    setPositiveButton("예", eventHandler3)
-                    setNegativeButton("아니오", eventHandler3)
-                    show()
-                }
-
+                customDialog.show()
             }
         }
     } //onCreate()
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        if(toggle.onOptionsItemSelected(item)){
-            return true
-        }
         when(item.itemId){
-            R.id.item1 -> {
-                Log.d("mobileapp", "Navigation menu: 메뉴 1")
-                binding.btnDate.setTextColor(Color.parseColor("#ffff00"))
+            R.id.item_info -> {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://m.duksung.ac.kr"))
+                startActivity(intent)
                 true
             }
-            R.id.item2 -> {
-                Log.d("mobileapp", "Navigation menu: 메뉴 2")
+            R.id.item_map -> {
+                //val intent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:37.5662952,126.9779451"))
+                //길찾기
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/dir/덕성여자대학교/안국역"))
+
+                startActivity(intent)
                 true
             }
-            R.id.item3 -> {
-                Log.d("mobileapp", "Navigation menu: 메뉴 3")
+            R.id.item_gallery -> {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("content://media/internal/images/media"))
+                startActivity(intent)
                 true
             }
-            R.id.item4 -> {
-                Log.d("mobileapp", "Navigation menu: 메뉴 4")
+            R.id.item_call -> {
+                val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:010-6266-6576"))
+                startActivity(intent)
+                true
+            }
+            R.id.item_mail -> {
+                val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:wooung@duksung.ac.kr"))
+                startActivity(intent)
                 true
             }
         }
         return false
     }
-    //Option Menu
+
+    //Option Menu를 만듦
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_navigation, menu)
+        menuInflater.inflate(R.menu.menu_navigation, menu) //xml에서 불러옴
+
+        //액션뷰인 SearchView에 대한 제어
         val searchView = menu?.findItem(R.id.menu_search)?.actionView as SearchView
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -220,10 +235,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return super.onCreateOptionsMenu(menu)
     }
 
+    //옵션메뉴 각각이 선택됐을 때 처리
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        //토글이 클릭될때마다
         if(toggle.onOptionsItemSelected(item)){
-            return true
+            return true //본래의 기능 그대로 수행
         }
+
         when(item.itemId){
             R.id.item1 -> {
                 Log.d("mobileapp", "Option menu: 메뉴 1")

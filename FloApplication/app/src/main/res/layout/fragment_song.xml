@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:orientation="vertical"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:id="@+id/album_favormix_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="내 취향 MIX"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/album_song_mix_iv"
+                    android:layout_width="40dp"
+                    android:layout_height="25dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/btn_toggle_off" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/album_choice_iv"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="20dp"
+                android:scaleType="fitXY"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/btn_playlist_select_off"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/album_favormix_tv" />
+
+            <TextView
+                android:id="@+id/album_choiceAll_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전체선택"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@id/album_choice_iv"
+                app:layout_constraintStart_toEndOf="@id/album_choice_iv"
+                app:layout_constraintTop_toTopOf="@id/album_choice_iv" />
+
+            <ImageView
+                android:id="@+id/album_listen_iv"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="20dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_browse_arrow_right"
+                app:layout_constraintEnd_toStartOf="@id/album_listenAll_tv"
+                app:layout_constraintTop_toTopOf="@id/album_listenAll_tv"
+                app:layout_constraintBottom_toBottomOf="@id/album_listenAll_tv"/>
+
+            <TextView
+                android:id="@+id/album_listenAll_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:text="전체듣기"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@id/album_choice_iv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/album_choice_iv" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/album_listenAll_tv">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/album_lalac_layout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+
+                    <TextView
+                        android:id="@+id/album_list_order_01_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="10dp"
+                        android:text="01"
+                        android:textColor="@color/black"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/album_list_title_01_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:background="@drawable/textview_background_select_color_radius"
+                        android:paddingHorizontal="5dp"
+                        android:text="TITLE"
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        app:layout_constraintBottom_toBottomOf="@id/album_list_order_01_tv"
+                        app:layout_constraintStart_toEndOf="@id/album_list_order_01_tv"
+                        app:layout_constraintTop_toTopOf="@id/album_list_order_01_tv" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="가수"
+                        android:textSize="10sp"
+                        app:layout_constraintStart_toStartOf="@id/album_list_title_01_tv"
+                        app:layout_constraintTop_toBottomOf="@id/album_list_title_01_tv" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="라일락"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/album_list_title_01_tv"
+                        app:layout_constraintStart_toEndOf="@id/album_list_title_01_tv"
+                        app:layout_constraintTop_toTopOf="@id/album_list_title_01_tv" />
+
+                    <ImageView
+                        android:id="@+id/album_list_more_01_iv"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginEnd="20dp"
+                        android:src="@drawable/btn_player_more"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginEnd="5dp"
+                        android:src="@drawable/btn_miniplayer_play"
+                        app:layout_constraintBottom_toBottomOf="@id/album_list_more_01_iv"
+                        app:layout_constraintEnd_toStartOf="@id/album_list_more_01_iv"
+                        app:layout_constraintTop_toTopOf="@id/album_list_more_01_iv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/album_lalac_layout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+
+                    <TextView
+                        android:id="@+id/album_list_order_02_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="10dp"
+                        android:text="01"
+                        android:textColor="@color/black"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="가수"
+                        android:textSize="10sp"
+                        app:layout_constraintStart_toStartOf="@id/album_list_song_title_02_tv"
+                        app:layout_constraintTop_toBottomOf="@id/album_list_order_02_tv" />
+
+                    <TextView
+                        android:id="@+id/album_list_song_title_02_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="Flu"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/album_list_order_02_tv"
+                        app:layout_constraintStart_toEndOf="@id/album_list_order_02_tv"
+                        app:layout_constraintTop_toTopOf="@id/album_list_order_02_tv" />
+
+                    <ImageView
+                        android:id="@+id/album_list_more_02_iv"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginEnd="20dp"
+                        android:src="@drawable/btn_player_more"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginEnd="5dp"
+                        android:src="@drawable/btn_miniplayer_play"
+                        app:layout_constraintBottom_toBottomOf="@id/album_list_more_02_iv"
+                        app:layout_constraintEnd_toStartOf="@id/album_list_more_02_iv"
+                        app:layout_constraintTop_toTopOf="@id/album_list_more_02_iv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,9 +17,21 @@ class AddActivity : AppCompatActivity() {
         binding = ActivityAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnAdd.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+        val date = intent.getStringExtra("today")
+        binding.date.text = date
+
+        binding.btnSave.setOnClickListener {
+            val returnIntent = Intent()
+            returnIntent.putExtra("todo", binding.addEditView.text.toString())
+            setResult(RESULT_OK,returnIntent)
+            finish()
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val intent = intent
+        setResult(RESULT_OK,intent)
+        finish()
+        return true
     }
 }
