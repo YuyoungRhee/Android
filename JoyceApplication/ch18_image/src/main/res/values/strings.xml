@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">ch28_image</string>
+    <string name="drawer_opened">Opened Drawer</string>
+    <string name="drawer_closed">Closed Drawer</string>
+    <string name="default_client_id">899771557333-qi3jpcd5ff67igqafi1v18ksnkv8lpl7.apps.googleusercontent.com</string>
+</resources>

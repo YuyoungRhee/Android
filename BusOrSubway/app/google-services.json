@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "267187137903",
+    "project_id": "busorsubway",
+    "storage_bucket": "busorsubway.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267187137903:android:b518b79f16249a12b78c9a",
+        "android_client_info": {
+          "package_name": "com.example.busorsubway"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "267187137903-d8gopc2r6rlvgr7cla81d9qpm3rcf8et.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.busorsubway",
+            "certificate_hash": "213c83258dd0b2e44230fe4522d6ed9f5cac3e0c"
+          }
+        },
+        {
+          "client_id": "267187137903-m8e2njknp98v1qerdfuv3pnl67h2poid.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMbMeRhRBnOOLF-ztNQRB2NueUq53tcIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "267187137903-m8e2njknp98v1qerdfuv3pnl67h2poid.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

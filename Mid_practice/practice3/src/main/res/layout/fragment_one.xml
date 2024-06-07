@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OneFragment"
+    android:background="#FFB8B3"
+    android:columnCount="2">
+    <TextView
+        android:text="스터디룸 예약하기"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"
+        android:layout_columnSpan="2"/>
+    <TextView
+        android:text="이름"
+        android:layout_marginEnd="20dp"/>
+    <EditText
+        android:id="@+id/one_name_et"
+        android:hint="예약자 이름을 입력하시오"
+        android:background="@color/white"/>
+    <TextView
+        android:text="날짜"/>
+    <Button
+        android:id="@+id/one_date_btn"
+        android:text="날짜 선택하기"/>
+
+    <TextView
+        android:text="시간"/>
+    <Button
+        android:id="@+id/one_time_btn"
+        android:text="시간 선택하기"/>
+
+    <TextView
+        android:text="룸"/>
+    <Button
+        android:id="@+id/one_room_btn"
+        android:text="스터디룸 선택하기"/>
+
+    <Button
+        android:id="@+id/one_end_btn"
+        android:text="예약 완료하기"
+        android:layout_columnSpan="2"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/one_result_tv"
+        android:visibility="invisible"
+        android:layout_columnSpan="2"/>
+
+
+
+
+
+
+
+</GridLayout>

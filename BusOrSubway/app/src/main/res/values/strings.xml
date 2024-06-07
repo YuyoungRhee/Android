@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BusOrSubway</string>
+    <string name="drawer_opened">Opened Drawer</string>
+    <string name="drawer_closed">Closed Drawer</string>
+    <string name="default_client_id">267187137903-m8e2njknp98v1qerdfuv3pnl67h2poid.apps.googleusercontent.com</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

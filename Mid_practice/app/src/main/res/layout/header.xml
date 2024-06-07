@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#ff0000">
+
+    <ImageView
+        android:id="@+id/header_user_iv"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/user_basic"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이유영\nwooung@ds.ac.kr"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/header_user_iv"
+        app:layout_constraintTop_toTopOf="@id/header_user_iv"
+        app:layout_constraintBottom_toBottomOf="@id/header_user_iv"
+        android:layout_marginStart="20dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
